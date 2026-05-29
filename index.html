@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>異象雷翼</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="game-panel">
+        <canvas id="game" width="480" height="720" aria-label="異象雷翼射擊遊戲"></canvas>
+        <div id="overlay" class="overlay">
+          <div class="select-card">
+            <p class="kicker">Surreal Vertical Shooter</p>
+            <h1>異象雷翼</h1>
+            <p class="intro">選一台不太講物理的飛機，穿過夢境空域。</p>
+            <div id="shipGrid" class="ship-grid"></div>
+            <div class="actions">
+              <button id="startBtn" class="primary">開始出擊</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <aside class="side">
+        <div>
+          <p class="label">分數</p>
+          <strong id="score">0</strong>
+        </div>
+        <div>
+          <p class="label">生命</p>
+          <strong id="lives">3</strong>
+        </div>
+        <div>
+          <p class="label">火力</p>
+          <strong id="power">1</strong>
+        </div>
+        <div class="controls">
+          <p class="label">操作</p>
+          <p>方向鍵 / WASD 移動</p>
+          <p>Space 或按住滑鼠射擊</p>
+          <p>P 暫停，R 重新開始</p>
+        </div>
+      </aside>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>
