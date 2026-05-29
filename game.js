@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 const overlay = document.getElementById("overlay");
 const shipGrid = document.getElementById("shipGrid");
 const startBtn = document.getElementById("startBtn");
+const fireBtn = document.getElementById("fireBtn");
 const scoreEl = document.getElementById("score");
 const livesEl = document.getElementById("lives");
 const powerEl = document.getElementById("power");
@@ -69,6 +70,7 @@ let power = 1;
 let playing = false;
 let paused = false;
 let gameOver = false;
+let firing = false;
 let lastShot = 0;
 let lastEnemy = 0;
 let lastPickup = 0;
@@ -293,7 +295,7 @@ function update(now) {
   }
   player.x = Math.max(24, Math.min(W - 24, player.x));
   player.y = Math.max(54, Math.min(H - 34, player.y));
-  if (keys.has(" ") || pointer.active) shoot(now);
+  if (keys.has(" ") || pointer.active || firing) shoot(now);
 
   spawnEnemy(now);
   spawnPickup(now);
@@ -540,6 +542,23 @@ canvas.addEventListener("pointermove", (event) => {
 window.addEventListener("pointerup", () => {
   pointer.active = false;
 });
+
+function setFiring(active) {
+  firing = active;
+  fireBtn.classList.toggle("firing", active);
+}
+
+fireBtn.addEventListener("pointerdown", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  setFiring(true);
+});
+fireBtn.addEventListener("pointerup", (event) => {
+  event.preventDefault();
+  setFiring(false);
+});
+fireBtn.addEventListener("pointercancel", () => setFiring(false));
+fireBtn.addEventListener("pointerleave", () => setFiring(false));
 
 startBtn.addEventListener("click", startGame);
 
